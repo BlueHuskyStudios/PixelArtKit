@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A32312CC22CBCE7F006AF26E /* SwiftUI Color + CIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32312CA22CBCE7F006AF26E /* SwiftUI Color + CIColor.swift */; };
+		A32312CD22CBCE7F006AF26E /* SwiftUI Color + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32312CB22CBCE7F006AF26E /* SwiftUI Color + UIColor.swift */; };
 		A33F91772273D2B600E47820 /* PixelArtKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A33F916D2273D2B600E47820 /* PixelArtKit.framework */; };
 		A33F917C2273D2B600E47820 /* PixelArtKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F917B2273D2B600E47820 /* PixelArtKitTests.swift */; };
 		A33F917E2273D2B600E47820 /* PixelArtKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A33F91702273D2B600E47820 /* PixelArtKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A32312CA22CBCE7F006AF26E /* SwiftUI Color + CIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftUI Color + CIColor.swift"; sourceTree = "<group>"; };
+		A32312CB22CBCE7F006AF26E /* SwiftUI Color + UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftUI Color + UIColor.swift"; sourceTree = "<group>"; };
 		A33F916D2273D2B600E47820 /* PixelArtKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PixelArtKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A33F91702273D2B600E47820 /* PixelArtKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixelArtKit.h; sourceTree = "<group>"; };
 		A33F91712273D2B600E47820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A32312C922CBCE7F006AF26E /* Color Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A32312CA22CBCE7F006AF26E /* SwiftUI Color + CIColor.swift */,
+				A32312CB22CBCE7F006AF26E /* SwiftUI Color + UIColor.swift */,
+			);
+			path = "Color Utilities";
+			sourceTree = "<group>";
+		};
 		A33F91632273D2B600E47820 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +103,7 @@
 			children = (
 				A33F91702273D2B600E47820 /* PixelArtKit.h */,
 				A33F91712273D2B600E47820 /* Info.plist */,
+				A32312C922CBCE7F006AF26E /* Color Utilities */,
 				A33F91C62273F58500E47820 /* Image Sizing.swift */,
 				A3413DF52275517300E5E17B /* Dimension Number Formatter.swift */,
 				A33F91CB227402B800E47820 /* CGFloat from more things.swift */,
@@ -220,11 +234,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A32312CC22CBCE7F006AF26E /* SwiftUI Color + CIColor.swift in Sources */,
 				A3413E0122756A7E00E5E17B /* Filetype Conveniences.swift in Sources */,
 				A3413DF62275517300E5E17B /* Dimension Number Formatter.swift in Sources */,
 				A33F91C72273F58500E47820 /* Image Sizing.swift in Sources */,
 				A33F91CF2274BD4000E47820 /* Numerical Conveniences.swift in Sources */,
 				A33F91CC227402B800E47820 /* CGFloat from more things.swift in Sources */,
+				A32312CD22CBCE7F006AF26E /* SwiftUI Color + UIColor.swift in Sources */,
 				A3C98FD1227642E1007FC8F7 /* CenteredTextLayer.swift in Sources */,
 				A3413E032275700400E5E17B /* DragDropFileView.swift in Sources */,
 			);
