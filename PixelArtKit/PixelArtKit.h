@@ -2,11 +2,11 @@
 //  PixelArtKit.h
 //  PixelArtKit
 //
-//  Created by Ben Leggiero on 4/26/19.
+//  Created by Ben Leggiero on 2019-07-09.
 //  Copyright © 2019 Ben Leggiero. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for PixelArtKit.
 FOUNDATION_EXPORT double PixelArtKitVersionNumber;

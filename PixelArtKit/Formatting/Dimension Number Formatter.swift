@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 
 
@@ -21,7 +22,7 @@ public extension NumberFormatter {
 
 
 
-public extension NSSize {
+public extension CGSize {
     
     var formattedAsPixelSize: String {
         return "\(width.formattedAsPixelSize) × \(height.formattedAsPixelSize)"

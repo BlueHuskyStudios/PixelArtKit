@@ -1,5 +1,5 @@
 //
-//  Numerical Conveniences.swift
+//  Rounding.swift
 //  PixelArtKit
 //
 //  Created by Ben Leggiero on 4/27/19.

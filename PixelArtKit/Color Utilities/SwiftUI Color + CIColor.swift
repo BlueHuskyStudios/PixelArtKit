@@ -11,8 +11,31 @@ import CoreImage
 
 
 
-public extension SwiftUI {
-    init(_ ciColor: CIColor) {
+public extension Color {
+    init?(_ ciColor: CIColor) {
+        let targetColorSpace = ciColor.colorSpace
         
+        if let translatedRgbColorSpace = Color.RGBColorSpace(targetColorSpace) {
+            self.init(translatedRgbColorSpace, red: Double(ciColor.red), green: Double(ciColor.green), blue: Double(ciColor.blue), opacity: Double(ciColor.alpha))
+        }
+        else if let translatedWhiteColorSpace = Color.RGBColorSpace(monochrome: targetColorSpace),
+            ciColor.numberOfComponents >= 1 {
+            self.init(translatedWhiteColorSpace, white: Double(ciColor.components[0]), opacity: Double(ciColor.alpha))
+        }
+        else if let cgColor = ciColor.cgColor {
+            self.init(cgColor)
+        }
+        else {
+            return nil
+        }
+    }
+}
+
+
+
+public extension CIColor {
+    
+    var cgColor: CGColor? {
+        return CGColor.init(colorSpace: self.colorSpace, components: self.components)
     }
 }
