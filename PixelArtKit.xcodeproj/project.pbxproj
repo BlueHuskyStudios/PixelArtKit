@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7738DCF422D68501008D06B6 /* HasAlso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7738DCF322D68501008D06B6 /* HasAlso.swift */; };
+		7738DCF722D699F6008D06B6 /* GranularOptionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7738DCF622D699F6008D06B6 /* GranularOptionSet.swift */; };
 		A34F708722D500FD00270F9D /* PixelArtKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34F707D22D500FD00270F9D /* PixelArtKit.framework */; };
 		A34F708C22D500FD00270F9D /* PixelArtKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34F708B22D500FD00270F9D /* PixelArtKitTests.swift */; };
 		A34F708E22D500FD00270F9D /* PixelArtKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A34F708022D500FD00270F9D /* PixelArtKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7738DCF322D68501008D06B6 /* HasAlso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasAlso.swift; sourceTree = "<group>"; };
+		7738DCF622D699F6008D06B6 /* GranularOptionSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GranularOptionSet.swift; sourceTree = "<group>"; };
 		A34F707D22D500FD00270F9D /* PixelArtKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PixelArtKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A34F708022D500FD00270F9D /* PixelArtKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixelArtKit.h; sourceTree = "<group>"; };
 		A34F708122D500FD00270F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +83,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7738DCF222D684ED008D06B6 /* Functional Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7738DCF322D68501008D06B6 /* HasAlso.swift */,
+			);
+			path = "Functional Utilities";
+			sourceTree = "<group>";
+		};
+		7738DCF522D699E5008D06B6 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				7738DCF622D699F6008D06B6 /* GranularOptionSet.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
 		A34F707322D500FD00270F9D = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +121,11 @@
 			isa = PBXGroup;
 			children = (
 				A34F70AF22D5015300270F9D /* _ Framework Basics */,
+				7738DCF522D699E5008D06B6 /* Collections */,
 				A34F709822D5014D00270F9D /* Color Utilities */,
 				A3C5935C22D5443800F90B21 /* Drawing */,
 				A3C5935F22D5447100F90B21 /* Formatting */,
+				7738DCF222D684ED008D06B6 /* Functional Utilities */,
 				A34F70B122D501BB00270F9D /* Image Sizing */,
 				A34F70A022D5014D00270F9D /* Math */,
 				A3C5936022D5447D00F90B21 /* Serialization */,
@@ -307,8 +329,10 @@
 				A3C5935E22D5444800F90B21 /* ScalingFactor.swift in Sources */,
 				A34F70AE22D5014D00270F9D /* Dimension Number Formatter.swift in Sources */,
 				A34F70A822D5014D00270F9D /* Filetype Conveniences.swift in Sources */,
+				7738DCF722D699F6008D06B6 /* GranularOptionSet.swift in Sources */,
 				A34F70B922D51AF400270F9D /* Rounding.swift in Sources */,
 				A34F70AC22D5014D00270F9D /* CGSize Math.swift in Sources */,
+				7738DCF422D68501008D06B6 /* HasAlso.swift in Sources */,
 				A34F70B322D501BB00270F9D /* UIImage Sizing.swift in Sources */,
 				A3CCB99022D570AD00020C35 /* CGRect Extensions.swift in Sources */,
 				A34F70A522D5014D00270F9D /* SwiftUI Color + CGColor.swift in Sources */,

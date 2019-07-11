@@ -13,14 +13,8 @@ import SwiftUI
 
 // MARK: - ScaleProtocol
 
-public protocol ScaleProtocol: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral
-    where IntegerLiteralType == Dimension.IntegerLiteralType,
-    FloatLiteralType == Dimension.FloatLiteralType
-{
+public protocol ScaleProtocol {
     associatedtype Dimension where Dimension: BinaryFloatingPoint
-    
-    typealias IntegerLiteralType = Dimension.IntegerLiteralType
-    typealias FloatLiteralType = Dimension.FloatLiteralType
     
     
     
@@ -28,14 +22,21 @@ public protocol ScaleProtocol: ExpressibleByIntegerLiteral, ExpressibleByFloatLi
     
     
     var inverted: Self { get }
+    var allDimensions: [Dimension] { get }
+    
+    func isUnscaled(tolerance: Dimension) -> Bool
+    func isInteger(tolerance: Dimension) -> Bool
 }
 
 
 
 // MARK: ExpressibleByIntegerLiteral
 
-extension ScaleProtocol {
-    
+extension ScaleProtocol
+    where Self: ExpressibleByIntegerLiteral,
+    Dimension: ExpressibleByIntegerLiteral,
+    Self.IntegerLiteralType == Dimension.IntegerLiteralType
+{
     public init(integerLiteral value: IntegerLiteralType) {
         self.init(proportional: Dimension.init(integerLiteral: value))
     }
@@ -45,10 +46,43 @@ extension ScaleProtocol {
 
 // MARK: ExpressibleByFloatLiteral
 
-extension ScaleProtocol {
+extension ScaleProtocol
+    where Self: ExpressibleByFloatLiteral,
+    Dimension: ExpressibleByFloatLiteral,
+    Self.FloatLiteralType == Dimension.FloatLiteralType
+{
     public init(floatLiteral value: FloatLiteralType) {
         self.init(proportional: Dimension.init(floatLiteral: value))
     }
+}
+
+
+
+// MARK: Synthesis
+
+public extension ScaleProtocol {
+    
+    func isUnscaled(tolerance: Dimension) -> Bool {
+        return !allDimensions.contains { abs($0 - 1) > tolerance }
+    }
+    
+    
+    func isUnscaled() -> Bool {
+        return isUnscaled(tolerance: 0.01)
+    }
+    
+    
+    func isInteger(tolerance: Dimension) -> Bool {
+        return !allDimensions.contains { abs($0 - $0.rounded()) > tolerance }
+    }
+    
+    
+    func isInteger() -> Bool {
+        return isInteger(tolerance: 0.01)
+    }
+    
+    
+    static var unscaled: Self { .init(proportional: 1) }
 }
 
 
@@ -77,12 +111,21 @@ public struct Scale1D<Dimension>: ScaleProtocol where Dimension: BinaryFloatingP
     public var inverted: Scale1D<Dimension> {
         return .init(proportional: 1.0 / x)
     }
+    
+    
+    public var allDimensions: [Dimension] { [x] }
 }
 
 
 
-public extension Scale1D {
-    static var unscaled: Scale1D<Dimension> { Scale1D(proportional: 1) }
+extension Scale1D: ExpressibleByIntegerLiteral {
+    public typealias IntegerLiteralType = Dimension.IntegerLiteralType
+}
+
+
+
+extension Scale1D: ExpressibleByFloatLiteral {
+    public typealias FloatLiteralType = Dimension.FloatLiteralType
 }
 
 
@@ -99,8 +142,8 @@ public struct Scale2D<Dimension>: ScaleProtocol where Dimension: BinaryFloatingP
     
     
     public init(proportional both: Dimension) {
-        x = both
-        y = both
+        self.init(x: both,
+                  y: both)
     }
     
     
@@ -114,15 +157,35 @@ public struct Scale2D<Dimension>: ScaleProtocol where Dimension: BinaryFloatingP
         return .init(x: 1.0 / x,
                      y: 1.0 / y)
     }
+    
+    
+    public var allDimensions: [Dimension] { [x, y] }
+}
+
+
+
+extension Scale2D: TwoDimensional {
+    public var firstDimension: Dimension { x }
+    public var secondDimension: Dimension { y }
 }
 
 
 
 public extension Scale2D {
-    static var unscaled: Scale2D<Dimension> { Scale2D(proportional: 1) }
-    
     
     init(proportional scale1D: Scale1D<Dimension>) {
         self.init(proportional: scale1D.x)
     }
+}
+
+
+
+extension Scale2D: ExpressibleByIntegerLiteral {
+    public typealias IntegerLiteralType = Dimension.IntegerLiteralType
+}
+
+
+
+extension Scale2D: ExpressibleByFloatLiteral {
+    public typealias FloatLiteralType = Dimension.FloatLiteralType
 }

@@ -14,8 +14,10 @@ import SwiftUI
 /// Something which has two dimensions, like (x, y) or (width, height)
 public protocol TwoDimensional {
     
-    var firstDimension: Length { get }
-    var secondDimension: Length { get }
+    associatedtype Dimension
+    
+    var firstDimension: Dimension { get }
+    var secondDimension: Dimension { get }
 }
 
 
@@ -30,25 +32,25 @@ public enum TwoDiemnsionalComparisonApproach {
     /// Comparators register inequality based solely on the second dimension
     case second
     
-    /// Comparators register inequality based on the addition of both dimensions
+    /// Comparators register inequality based on the sum of both dimensions
     case additive
     
-    /// Comparators register inequality based on the multiplication of both dimensions
+    /// Comparators register inequality based on the product of both dimensions
     case multiplicative
     
-    /// Comparators register inequality based on the division of both dimensions
+    /// Comparators register inequality based on the quotient of both dimensions
     case divisive
 }
 
 
 
-public extension TwoDimensional {
+public extension TwoDimensional where Dimension: FloatingPoint {
     
     private func compare(to other: Self, approach: ComparisonApproach,
-                         using comparator: (Length, Length) -> Bool) -> Bool {
+                         using comparator: (Dimension, Dimension) -> Bool) -> Bool {
         
-        func compare(using combinator: (Length, Length) -> Length,
-                     comparator: (Length, Length) -> Bool) -> Bool {
+        func compare(using combinator: (Dimension, Dimension) -> Dimension,
+                     comparator: (Dimension, Dimension) -> Bool) -> Bool {
             return comparator(
                 combinator(self.firstDimension, self.secondDimension),
                 combinator(other.firstDimension, other.secondDimension)
@@ -89,12 +91,12 @@ public extension TwoDimensional {
     }
     
     
-    var smallestDimension: Length {
+    var smallestDimension: Dimension {
         return min(firstDimension, secondDimension)
     }
     
     
-    var largestDimension: Length {
+    var largestDimension: Dimension {
         return max(firstDimension, secondDimension)
     }
     
@@ -106,6 +108,14 @@ public extension TwoDimensional {
 
 
 public typealias Margin = EdgeInsets
+
+
+
+public enum ViewOrientation {
+    case square
+    case portrait
+    case landscape
+}
 
 
 
@@ -142,6 +152,19 @@ public extension CoreGraphics.CGSize {
     
     var aspectRatio: Length {
         return width / height
+    }
+    
+    
+    var orientation: ViewOrientation {
+        if aspectRatio.distance(to: 1) < 0.01 {
+            return .square
+        }
+        else if aspectRatio < 1 {
+            return .portrait
+        }
+        else {
+            return .landscape
+        }
     }
     
     
